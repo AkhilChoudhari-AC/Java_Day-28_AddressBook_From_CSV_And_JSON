@@ -2,6 +2,11 @@ package Com.BridgeLabz.AddressBookCSV_JSON;
 
 public class ContactDetails {
 
+    /**
+     * private variables can only be accessed within the same class (an outside
+     * class has no access to it) private = restricted access However, it is
+     * possible to access them if we provide public get and set methods.
+     */
     private String firstName;
     private String lastName;
     private String address;
@@ -15,7 +20,19 @@ public class ContactDetails {
 
     }
 
-
+    /**
+     * creating a parameterized constructor of ContactDetails by passing parameters
+     * with no return type
+     *
+     * @param firstName    -passing first name
+     * @param lastName     -passing last name
+     * @param address      -passing address
+     * @param city         -passing city name
+     * @param state        -passing state
+     * @param zipCode      -passing zipcode
+     * @param mobileNumber -passing mobile number
+     * @param emailId      -passing emailId
+     */
     public ContactDetails(String firstName, String lastName, String address, String city, String state, int zipCode,
                           long mobileNumber, String emailId) {
         this.firstName = firstName;
@@ -138,7 +155,7 @@ public class ContactDetails {
      * The set method takes a parameter (zipcode) and assigns it to the zipcode
      * variable. The this keyword is used to refer to the current object.
      *
-     * @param zipcode
+     * @param zipCode
      */
     public void setZipCode(int zipCode) {
         this.zipCode = zipCode;

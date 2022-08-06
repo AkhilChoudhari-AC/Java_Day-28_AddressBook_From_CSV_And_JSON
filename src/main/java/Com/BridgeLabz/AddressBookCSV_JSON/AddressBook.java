@@ -5,10 +5,12 @@ import java.util.stream.Collectors;
 
 public class AddressBook {
 
+
     /**
      * creating person object of contactDetails class
      */
     ContactDetails person = new ContactDetails();
+
     /**
      * Creating a List of ContactDetails using ArrayList
      */
@@ -22,6 +24,7 @@ public class AddressBook {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter the number of contacts you want to enter");
         int number = scanner.nextInt();
+
         /**
          * for loop will use if we enter the number of contacts that number of times the
          * for loop will execute
@@ -34,6 +37,7 @@ public class AddressBook {
              */
             System.out.println("Enter the first name of person");
             String fName = scanner.next();
+
             /**
              * if else condition is used to check the same person is exist or not
              */
@@ -41,6 +45,7 @@ public class AddressBook {
                 System.out.println("The entered person is already exist. Enter new name");
             } else {
                 System.out.println("Enter the contact details of person ");
+
                 /**
                  * calling method wrireContact() to enter all the contact details
                  */
@@ -71,6 +76,7 @@ public class AddressBook {
         long mobileNumber = scanner.nextLong();
         System.out.println("Enter EmailId : ");
         String emailId = scanner.next();
+
         /**
          * storing or adding all the contactDetails to the person
          */
@@ -85,6 +91,7 @@ public class AddressBook {
      * @param name -passing name
      */
     public void searchByName(String name) {
+
         /**
          * creating Stream from list of contactDetails. Filter operation produces a new
          * stream that contains elements of the original stream that pass a given
@@ -95,10 +102,6 @@ public class AddressBook {
          */
         List<ContactDetails> collect = contactDetailsList.stream().filter(p -> p.getFirstName().equalsIgnoreCase(name))
                 .collect(Collectors.toList());
-        /**
-         * ForEach() method is used and it is a Terminal operations mark the stream as
-         * consumed, after which point it can no longer be used further.
-         */
         for (ContactDetails contact : collect) {
             System.out.println("Search result: " + contact);
         }
@@ -112,6 +115,11 @@ public class AddressBook {
     public void searchByCity(String city) {
         List<ContactDetails> collect = contactDetailsList.stream().filter(p -> p.getCity().equalsIgnoreCase(city))
                 .collect(Collectors.toList());
+
+        /**
+         * ForEach() method is used and it is a Terminal operations mark the stream as
+         * consumed, after which point it can no longer be used further.
+         */
         for (ContactDetails contact : collect) {
             System.out.println("Search result: " + contact);
         }
@@ -271,7 +279,8 @@ public class AddressBook {
     public void viewByOptions() {
         Scanner scanner = new Scanner(System.in);
         while (true) {
-            System.out.println("Enter\n 1. By name\n 2. By city\n 3. By state\n 4. for previous menu");
+            System.out.println("Enter\n 1. By name\n 2. By city\n 3. By state\n 4. Count Contacts\n"
+                    + "5. Sort the entries Alphabetically\n 0. for previous menu");
             int choice = scanner.nextInt();
             scanner.nextLine();
             switch (choice) {
@@ -291,6 +300,15 @@ public class AddressBook {
                     searchByState(state);
                     break;
                 case 4:
+                    System.out.println("Enter The Name Of City");
+                    String cityName = scanner.next();
+                    countContactsByUsingCity(cityName);
+                case 5:
+                    sortByName();
+                    break;
+                case 6:
+                    sortByCity();
+                case 0:
                     return;
                 default:
                     System.out.println("Entered choice is incorrect!.. please enter correct choice");
